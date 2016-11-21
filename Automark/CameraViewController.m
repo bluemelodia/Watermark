@@ -42,7 +42,11 @@
  containing the original image is passed in. */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *thisImage = info[UIImagePickerControllerOriginalImage];
-    self.camImageView.image = thisImage;
+    
+    // Resize the UIImageView according to the size of the image
+    self.camImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.camImageView setImage:thisImage];
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
     // If photo taken by camera, write the photo to the Photo Library

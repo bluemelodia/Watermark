@@ -8,10 +8,12 @@
 
 #import "AutoMenuCollectionViewController.h"
 #import "CameraViewController.h"
+#import "CustomizePhotoViewController.h"
 
 @interface AutoMenuCollectionViewController () {
     NSArray *menuPhotos;
     CameraViewController *camVC;
+    CustomizePhotoViewController *custVC;
 }
 
 @end
@@ -57,8 +59,6 @@ static NSString * const reuseIdentifier = @"MenuCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:100 green:82 blue:86 alpha:0.66];
     cell.layer.cornerRadius = 16.0;
-    //cell.layer.borderWidth = 2.0;
-    //cell.layer.borderColor = [UIColor brownColor].CGColor;
     
     UIImageView *cellImageView = (UIImageView*)[cell viewWithTag:100];
     if (cellImageView) {
@@ -76,12 +76,11 @@ static NSString * const reuseIdentifier = @"MenuCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        NSLog(@"Camera");
         [self presentViewController:camVC animated:YES completion:nil];
     } else if (indexPath.row == 1) {
         NSLog(@"Collage");
     } else if (indexPath.row == 2) {
-        NSLog(@"Tablet");
+        [self presentViewController:custVC animated:YES completion:nil];
     } else {
         NSLog(@"Marker");
     }
