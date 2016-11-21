@@ -223,6 +223,7 @@
 				TargetAttributes = {
 					C931BDBE1DE3637500A7D074 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = GQGXF9JDYH;
 					};
 					C931BDDA1DE3637500A7D074 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -435,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GQGXF9JDYH;
 				INFOPLIST_FILE = Automark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hsumelanie.Automark;
@@ -446,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GQGXF9JDYH;
 				INFOPLIST_FILE = Automark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hsumelanie.Automark;

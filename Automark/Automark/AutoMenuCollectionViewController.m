@@ -38,6 +38,10 @@ static NSString * const reuseIdentifier = @"MenuCell";
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -53,8 +57,8 @@ static NSString * const reuseIdentifier = @"MenuCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:100 green:82 blue:86 alpha:0.66];
     cell.layer.cornerRadius = 16.0;
-    cell.layer.borderWidth = 2.0;
-    cell.layer.borderColor = [UIColor whiteColor].CGColor;
+    //cell.layer.borderWidth = 2.0;
+    //cell.layer.borderColor = [UIColor brownColor].CGColor;
     
     UIImageView *cellImageView = (UIImageView*)[cell viewWithTag:100];
     if (cellImageView) {
@@ -65,7 +69,7 @@ static NSString * const reuseIdentifier = @"MenuCell";
         cellImageView.tag = 100;
     }
     cellImageView.image = [[menuPhotos objectAtIndex:indexPath.row] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [cellImageView setTintColor:[UIColor whiteColor]];
+    [cellImageView setTintColor:[UIColor brownColor]];
     
     return cell;
 }
