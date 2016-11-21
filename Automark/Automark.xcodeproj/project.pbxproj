@@ -17,6 +17,8 @@
 		C931BDE01DE3637500A7D074 /* AutomarkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C931BDDF1DE3637500A7D074 /* AutomarkTests.m */; };
 		C931BDEB1DE3637500A7D074 /* AutomarkUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C931BDEA1DE3637500A7D074 /* AutomarkUITests.m */; };
 		C931BDFA1DE3643800A7D074 /* AutoMenuCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C931BDF91DE3643800A7D074 /* AutoMenuCollectionViewController.m */; };
+		C931BE011DE371C700A7D074 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C931BDFF1DE371C700A7D074 /* CameraViewController.m */; };
+		C931BE021DE371C700A7D074 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C931BE001DE371C700A7D074 /* CameraViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,9 @@
 		C931BDEC1DE3637500A7D074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C931BDF81DE3643800A7D074 /* AutoMenuCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoMenuCollectionViewController.h; sourceTree = "<group>"; };
 		C931BDF91DE3643800A7D074 /* AutoMenuCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoMenuCollectionViewController.m; sourceTree = "<group>"; };
+		C931BDFE1DE371C700A7D074 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = ../CameraViewController.h; sourceTree = "<group>"; };
+		C931BDFF1DE371C700A7D074 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = ../CameraViewController.m; sourceTree = "<group>"; };
+		C931BE001DE371C700A7D074 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraViewController.xib; path = ../CameraViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +117,9 @@
 				C931BDC91DE3637500A7D074 /* ViewController.m */,
 				C931BDF81DE3643800A7D074 /* AutoMenuCollectionViewController.h */,
 				C931BDF91DE3643800A7D074 /* AutoMenuCollectionViewController.m */,
+				C931BDFE1DE371C700A7D074 /* CameraViewController.h */,
+				C931BDFF1DE371C700A7D074 /* CameraViewController.m */,
+				C931BE001DE371C700A7D074 /* CameraViewController.xib */,
 				C931BDCB1DE3637500A7D074 /* Main.storyboard */,
 				C931BDD11DE3637500A7D074 /* Assets.xcassets */,
 				C931BDD31DE3637500A7D074 /* LaunchScreen.storyboard */,
@@ -252,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C931BDD51DE3637500A7D074 /* LaunchScreen.storyboard in Resources */,
+				C931BE021DE371C700A7D074 /* CameraViewController.xib in Resources */,
 				C931BDD21DE3637500A7D074 /* Assets.xcassets in Resources */,
 				C931BDCD1DE3637500A7D074 /* Main.storyboard in Resources */,
 			);
@@ -281,6 +290,7 @@
 				C931BDCA1DE3637500A7D074 /* ViewController.m in Sources */,
 				C931BDD01DE3637500A7D074 /* Automark.xcdatamodeld in Sources */,
 				C931BDC71DE3637500A7D074 /* AppDelegate.m in Sources */,
+				C931BE011DE371C700A7D074 /* CameraViewController.m in Sources */,
 				C931BDC41DE3637500A7D074 /* main.m in Sources */,
 				C931BDFA1DE3643800A7D074 /* AutoMenuCollectionViewController.m in Sources */,
 			);
@@ -508,6 +518,7 @@
 				C931BDF11DE3637500A7D074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C931BDF21DE3637500A7D074 /* Build configuration list for PBXNativeTarget "AutomarkTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +527,7 @@
 				C931BDF41DE3637500A7D074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C931BDF51DE3637500A7D074 /* Build configuration list for PBXNativeTarget "AutomarkUITests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +536,7 @@
 				C931BDF71DE3637500A7D074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
