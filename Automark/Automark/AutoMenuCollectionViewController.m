@@ -49,7 +49,9 @@ static NSString * const reuseIdentifier = @"MenuCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:100 green:82 blue:86 alpha:0.66];
     cell.layer.cornerRadius = 16.0;
-
+    cell.layer.borderWidth = 2.0;
+    cell.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     UIImageView *cellImageView = (UIImageView*)[cell viewWithTag:100];
     if (cellImageView) {
         
@@ -58,10 +60,24 @@ static NSString * const reuseIdentifier = @"MenuCell";
         [cell addSubview:cellImageView];
         cellImageView.tag = 100;
     }
-    cellImageView.image = [menuPhotos objectAtIndex:indexPath.row];
-
+    cellImageView.image = [[menuPhotos objectAtIndex:indexPath.row] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [cellImageView setTintColor:[UIColor whiteColor]];
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+ 
+    if (indexPath.row == 0) {
+        NSLog(@"Camera");
+    } else if (indexPath.row == 1) {
+        NSLog(@"Collage");
+    } else if (indexPath.row == 2) {
+        NSLog(@"Tablet");
+    } else {
+        NSLog(@"Marker");
+    }
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout methods
