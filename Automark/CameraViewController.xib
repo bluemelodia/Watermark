@@ -20,24 +20,30 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdk-jn-KpW">
-                    <rect key="frame" x="546" y="8" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdk-jn-KpW">
+                    <rect key="frame" x="321" y="8" width="46" height="30"/>
                     <state key="normal" title="Button">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3if-H9-mQo">
-                    <rect key="frame" x="262" y="269" width="240" height="128"/>
-                </imageView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTr-Bz-vpB">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTr-Bz-vpB">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <color key="backgroundColor" red="1" green="0.81960784313725488" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <items>
                         <barButtonItem style="plain" systemItem="camera" id="fIw-9y-5Jc">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="takePhoto:" destination="-1" id="N1p-nu-47t"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem enabled="NO" title="                                                                 " style="plain" id="QSr-PN-6SA"/>
+                        <barButtonItem style="plain" systemItem="organize" id="BmG-s5-OYG">
+                            <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="selectPhoto:" destination="-1" id="afd-3S-apl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem enabled="NO" title="                                                           " style="plain" id="QSr-PN-6SA"/>
                         <barButtonItem style="plain" systemItem="stop" id="IWr-Hj-3ll">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -47,6 +53,9 @@
                     </items>
                     <color key="barTintColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </toolbar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3if-H9-mQo">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.98823529409999999" green="0.53333333329999999" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -57,7 +66,10 @@
                 <constraint firstItem="Tdk-jn-KpW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="Y8y-5t-t3c"/>
                 <constraint firstItem="tTr-Bz-vpB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hUn-qg-a6h"/>
                 <constraint firstAttribute="trailing" secondItem="tTr-Bz-vpB" secondAttribute="trailing" id="iOY-4m-OB7"/>
+                <constraint firstAttribute="bottom" secondItem="3if-H9-mQo" secondAttribute="bottom" id="oEZ-hV-ZU1"/>
+                <constraint firstItem="3if-H9-mQo" firstAttribute="top" secondItem="tTr-Bz-vpB" secondAttribute="bottom" id="slb-56-wZN"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="91.5"/>
         </view>
     </objects>
 </document>

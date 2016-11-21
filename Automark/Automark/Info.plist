@@ -45,5 +45,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Add borders and watermarks to photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select a photo to customize.</string>
 </dict>
 </plist>

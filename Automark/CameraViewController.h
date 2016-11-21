@@ -10,8 +10,6 @@
 
 @interface CameraViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *camNaviBar;
 @property (weak, nonatomic) IBOutlet UIImageView *camImageView;
-@property (weak, nonatomic) IBOutlet UITabBar *camTabBar;
 
 @end

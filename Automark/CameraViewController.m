@@ -8,7 +8,8 @@
 
 #import "CameraViewController.h"
 
-@interface CameraViewController ()
+/* The UINavigationControllerDelegate is necessary because the camera/photo library will be presented modally to the user. */
+@interface CameraViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
@@ -16,10 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//[[UINavigationBar appearance] setBarTintColor:myColor];
-    
-    [self.camNaviBar setBarTintColor:[UIColor colorWithRed:100 green:82 blue:86 alpha:0.66]];
-    [self.camNaviBar setBackgroundColor:[UIColor colorWithRed:100 green:82 blue:86 alpha:0.66]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +26,36 @@
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+
+// Create an UIImagePickerController and set its delegate to this class.
+- (IBAction)takePhoto:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES; // user is allowed to edit/resize the selected photo
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+/* This is called once the user has taken a photo and resized the image. A NSDictionary 
+ containing the original and edited image is passed in. */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *thisImage = info[UIImagePickerControllerEditedImage];
+    self.camImageView.image = thisImage;
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)selectPhoto:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES; // user is allowed to edit/resize the selected photo
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (IBAction)dismissCameraVC:(id)sender {
