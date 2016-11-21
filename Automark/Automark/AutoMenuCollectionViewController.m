@@ -8,7 +8,9 @@
 
 #import "AutoMenuCollectionViewController.h"
 
-@interface AutoMenuCollectionViewController ()
+@interface AutoMenuCollectionViewController () {
+    NSArray *menuPhotos;
+}
 
 @end
 
@@ -19,26 +21,18 @@ static NSString * const reuseIdentifier = @"MenuCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    // Initialize menu image array
+    menuPhotos = [NSArray arrayWithObjects:[UIImage imageNamed:@"CameraW"], [UIImage imageNamed:@"CollageW"], [UIImage imageNamed:@"TabletW"], [UIImage imageNamed:@"Marker"], nil];
+    
+    
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -53,8 +47,19 @@ static NSString * const reuseIdentifier = @"MenuCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
-    // Configure the cell
+    cell.backgroundColor = [UIColor colorWithRed:100 green:82 blue:86 alpha:0.66];
+    cell.layer.cornerRadius = 16.0;
+
+    UIImageView *cellImageView = (UIImageView*)[cell viewWithTag:100];
+    if (cellImageView) {
+        
+    } else {
+        cellImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 50, 50)];
+        [cell addSubview:cellImageView];
+        cellImageView.tag = 100;
+    }
+    cellImageView.image = [menuPhotos objectAtIndex:indexPath.row];
+
     
     return cell;
 }
@@ -64,22 +69,22 @@ static NSString * const reuseIdentifier = @"MenuCell";
 
 // Asks the delegate for the size of the specified item's cell
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return CGSizeMake(177, 177);
+    return CGSizeMake(80, 80);
 }
 
 // Asks the delegate for the margins to apply to the content in the specified section
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+    return UIEdgeInsetsMake(98.0, 98.0, 98.0, 98.0);
 }
 
 // Asks the delegate for the spacing between successive rows or columns of a section
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 4.0;
+    return 16.0;
 }
 
 // Asks the delegate for the spacing between successive items in the rows or columns of a section.
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *) collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 4.0;
+    return 16.0;
 }
 
 @end
