@@ -33,15 +33,15 @@
 - (IBAction)takePhoto:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    picker.allowsEditing = YES; // user is allowed to edit/resize the selected photo
+    picker.allowsEditing = NO; // user is not allowed to resize the selected photo
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-/* This is called once the user has taken a photo and resized the image. A NSDictionary 
- containing the original and edited image is passed in. */
+/* This is called once the user has taken or selected a photo. A NSDictionary
+ containing the original image is passed in. */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *thisImage = info[UIImagePickerControllerEditedImage];
+    UIImage *thisImage = info[UIImagePickerControllerOriginalImage];
     self.camImageView.image = thisImage;
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -53,7 +53,7 @@
 - (IBAction)selectPhoto:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    picker.allowsEditing = YES; // user is allowed to edit/resize the selected photo
+    picker.allowsEditing = NO;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:picker animated:YES completion:NULL];
 }
