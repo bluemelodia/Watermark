@@ -25,12 +25,8 @@ static NSString * const reuseIdentifier = @"MenuCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Initialize the other view controllers
-    camVC = [[CameraViewController alloc] init];
-    
     // Initialize menu image array
     menuPhotos = [NSArray arrayWithObjects:[UIImage imageNamed:@"CameraW"], [UIImage imageNamed:@"CollageW"], [UIImage imageNamed:@"TabletW"], [UIImage imageNamed:@"Marker"], nil];
-    
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -76,10 +72,12 @@ static NSString * const reuseIdentifier = @"MenuCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
+        camVC = [[CameraViewController alloc] init];
         [self presentViewController:camVC animated:YES completion:nil];
     } else if (indexPath.row == 1) {
         NSLog(@"Collage");
     } else if (indexPath.row == 2) {
+        custVC = [[CustomizePhotoViewController alloc] init];
         [self presentViewController:custVC animated:YES completion:nil];
     } else {
         NSLog(@"Marker");
