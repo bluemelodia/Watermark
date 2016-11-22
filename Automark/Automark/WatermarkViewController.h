@@ -10,5 +10,6 @@
 
 @interface WatermarkViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *waterImageView;
+@property (weak, nonatomic) IBOutlet UITextView *watermark;
 
 @end

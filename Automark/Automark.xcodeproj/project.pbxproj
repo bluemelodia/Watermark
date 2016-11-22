@@ -25,6 +25,9 @@
 		C9F4F6B11DE4BFAD00D0A4A1 /* UIImageBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4F6B01DE4BFAD00D0A4A1 /* UIImageBorder.m */; };
 		C9F4F6B51DE4E60C00D0A4A1 /* WatermarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4F6B31DE4E60C00D0A4A1 /* WatermarkViewController.m */; };
 		C9F4F6B61DE4E60C00D0A4A1 /* WatermarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F4F6B41DE4E60C00D0A4A1 /* WatermarkViewController.xib */; };
+		C9F4F6BF1DE4EA5200D0A4A1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C9F4F6BE1DE4EA5200D0A4A1 /* LICENSE */; };
+		C9F4F6C41DE4F15E00D0A4A1 /* KWFontPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4F6C11DE4F15E00D0A4A1 /* KWFontPicker.m */; };
+		C9F4F6C51DE4F15E00D0A4A1 /* KWTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4F6C31DE4F15E00D0A4A1 /* KWTextEditor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,11 @@
 		C9F4F6B21DE4E60C00D0A4A1 /* WatermarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatermarkViewController.h; sourceTree = "<group>"; };
 		C9F4F6B31DE4E60C00D0A4A1 /* WatermarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatermarkViewController.m; sourceTree = "<group>"; };
 		C9F4F6B41DE4E60C00D0A4A1 /* WatermarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WatermarkViewController.xib; sourceTree = "<group>"; };
+		C9F4F6BE1DE4EA5200D0A4A1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../KWFontPicker/LICENSE; sourceTree = "<group>"; };
+		C9F4F6C01DE4F15E00D0A4A1 /* KWFontPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWFontPicker.h; path = ../../KWFontPicker/src/KWFontPicker.h; sourceTree = "<group>"; };
+		C9F4F6C11DE4F15E00D0A4A1 /* KWFontPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWFontPicker.m; path = ../../KWFontPicker/src/KWFontPicker.m; sourceTree = "<group>"; };
+		C9F4F6C21DE4F15E00D0A4A1 /* KWTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWTextEditor.h; path = ../../KWFontPicker/src/KWTextEditor.h; sourceTree = "<group>"; };
+		C9F4F6C31DE4F15E00D0A4A1 /* KWTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWTextEditor.m; path = ../../KWFontPicker/src/KWTextEditor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,7 @@
 		C931BDC11DE3637500A7D074 /* Automark */ = {
 			isa = PBXGroup;
 			children = (
+				C9F4F6B71DE4EA1C00D0A4A1 /* KWFontPicker */,
 				C931BDC51DE3637500A7D074 /* AppDelegate.h */,
 				C931BDC61DE3637500A7D074 /* AppDelegate.m */,
 				C9F0D6B61DE3F73E0031BB53 /* AlertLabel.h */,
@@ -180,6 +189,18 @@
 				C931BDEC1DE3637500A7D074 /* Info.plist */,
 			);
 			path = AutomarkUITests;
+			sourceTree = "<group>";
+		};
+		C9F4F6B71DE4EA1C00D0A4A1 /* KWFontPicker */ = {
+			isa = PBXGroup;
+			children = (
+				C9F4F6C01DE4F15E00D0A4A1 /* KWFontPicker.h */,
+				C9F4F6C11DE4F15E00D0A4A1 /* KWFontPicker.m */,
+				C9F4F6C21DE4F15E00D0A4A1 /* KWTextEditor.h */,
+				C9F4F6C31DE4F15E00D0A4A1 /* KWTextEditor.m */,
+				C9F4F6BE1DE4EA5200D0A4A1 /* LICENSE */,
+			);
+			name = KWFontPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +310,7 @@
 				C931BDD51DE3637500A7D074 /* LaunchScreen.storyboard in Resources */,
 				C9F4F6B61DE4E60C00D0A4A1 /* WatermarkViewController.xib in Resources */,
 				C9F0D6B21DE3AF480031BB53 /* CustomizePhotoViewController.xib in Resources */,
+				C9F4F6BF1DE4EA5200D0A4A1 /* LICENSE in Resources */,
 				C931BE021DE371C700A7D074 /* CameraViewController.xib in Resources */,
 				C931BDD21DE3637500A7D074 /* Assets.xcassets in Resources */,
 				C931BDCD1DE3637500A7D074 /* Main.storyboard in Resources */,
@@ -321,7 +343,9 @@
 				C931BDD01DE3637500A7D074 /* Automark.xcdatamodeld in Sources */,
 				C931BDC71DE3637500A7D074 /* AppDelegate.m in Sources */,
 				C931BE011DE371C700A7D074 /* CameraViewController.m in Sources */,
+				C9F4F6C41DE4F15E00D0A4A1 /* KWFontPicker.m in Sources */,
 				C931BDC41DE3637500A7D074 /* main.m in Sources */,
+				C9F4F6C51DE4F15E00D0A4A1 /* KWTextEditor.m in Sources */,
 				C931BDFA1DE3643800A7D074 /* AutoMenuCollectionViewController.m in Sources */,
 				C9F4F6B51DE4E60C00D0A4A1 /* WatermarkViewController.m in Sources */,
 				C9F0D6B11DE3AF480031BB53 /* CustomizePhotoViewController.m in Sources */,

@@ -55,7 +55,7 @@ static NSString * const reuseIdentifier = @"MenuCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:100 green:82 blue:86 alpha:0.66];
+    cell.backgroundColor = [UIColor whiteColor];
     cell.layer.cornerRadius = 16.0;
     
     UIImageView *cellImageView = (UIImageView*)[cell viewWithTag:100];
