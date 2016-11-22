@@ -7,9 +7,11 @@
 //
 
 #import "CustomizePhotoViewController.h"
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate>
 @end
 
 @implementation CustomizePhotoViewController
@@ -17,9 +19,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imageScrollView.minimumZoomScale = 0.5;
+    self.imageScrollView.maximumZoomScale = 6.0;
+    self.imageScrollView.contentSize = self.customImageView.frame.size;
+    self.imageScrollView.delegate = self;
+    
+    // Add a gesture recognizer to the scroll view
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureHandler:)];
+    tapGesture.delegate = self;
+    tapGesture.cancelsTouchesInView = NO; // don't swallow up touch event of child view
+    [self.imageScrollView addGestureRecognizer:tapGesture];
+    
     // Set the hex text to the default color
     NSString *str = [self colorToHex:(int)self.redSlider.value :(int)self.greenSlider.value :(int)self.blueSlider.value];
     [self.hexColorBox setText:str];
+}
+
+- (void)reactToScrollViewTouches {
+    NSLog(@"OK");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,9 +48,23 @@
     return YES;
 }
 
+// Allows the tap gesture recognizer to work at the same time as other gesture recognizers
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(nonnull UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (void) gestureHandler:(UITapGestureRecognizer *)tapGR {
+    CGPoint location = [tapGR locationInView:self.imageScrollView];
+    if (CGRectContainsPoint(self.customImageView.bounds, location) && !CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
+        UIColor *color = [self colorAtPoint:location];
+    }
+}
+
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
+    
+    NSLog(@"Are we still here?");
     
     // Don't color pick if there's no image, or the user clicks outside of the image view
     if (CGRectContainsPoint(self.customImageView.bounds, location) && !CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
@@ -108,6 +139,7 @@
     
     UIColor *color = [UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0];
     [self.colorField setBackgroundColor:color];
+    NSLog(@"HI");
 }
 
 // Translates the slider RGB values into the corresponding hex color
@@ -124,4 +156,10 @@
 
 - (IBAction)changeBorderWidth:(id)sender {
 }
+
+// UIScrollView methods
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.customImageView;
+}
+
 @end

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;
 @property (weak, nonatomic) IBOutlet UISlider *greenSlider;
 @property (weak, nonatomic) IBOutlet UISlider *blueSlider;
+@property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
 
 - (IBAction)redSliderChanged:(id)sender;
 - (IBAction)greenSliderChanged:(id)sender;
