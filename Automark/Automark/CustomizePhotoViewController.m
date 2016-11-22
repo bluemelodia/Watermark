@@ -19,24 +19,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imageScrollView.minimumZoomScale = 0.5;
-    self.imageScrollView.maximumZoomScale = 6.0;
-    self.imageScrollView.contentSize = self.customImageView.frame.size;
-    self.imageScrollView.delegate = self;
+    self.hexColorBox.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    // Add a gesture recognizer to the scroll view
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureHandler:)];
-    tapGesture.delegate = self;
-    tapGesture.cancelsTouchesInView = NO; // don't swallow up touch event of child view
-    [self.imageScrollView addGestureRecognizer:tapGesture];
+    [self.hexColorBox addTarget:self action:@selector(renderHexColor) forControlEvents:UIControlEventEditingChanged];
+    [self.hexColorBox addTarget:self action:@selector(renderHexColor) forControlEvents:UIControlEventEditingDidEnd];
+    [self.borderBox addTarget:self action:@selector(changeBorderWidth) forControlEvents:UIControlEventEditingChanged];
+    
+    // Detect, attach selectors for when the keyboard is shown and hidden
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
     // Set the hex text to the default color
     NSString *str = [self colorToHex:(int)self.redSlider.value :(int)self.greenSlider.value :(int)self.blueSlider.value];
     [self.hexColorBox setText:str];
-}
-
-- (void)reactToScrollViewTouches {
-    NSLog(@"OK");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,30 +43,40 @@
     return YES;
 }
 
-// Allows the tap gesture recognizer to work at the same time as other gesture recognizers
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(nonnull UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+- (IBAction)dismissCustomizeVC:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) gestureHandler:(UITapGestureRecognizer *)tapGR {
-    CGPoint location = [tapGR locationInView:self.imageScrollView];
-    if (CGRectContainsPoint(self.customImageView.bounds, location) && !CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
-        UIColor *color = [self colorAtPoint:location];
-    }
-}
-
+#pragma mark - Respond to user touches on the photo
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    // Dismiss the keypads
+    [self.hexColorBox resignFirstResponder];
+    [self.borderBox resignFirstResponder];
+    
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
-    NSLog(@"Are we still here?");
-    
     // Don't color pick if there's no image, or the user clicks outside of the image view
     if (CGRectContainsPoint(self.customImageView.bounds, location) && !CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
-        UIColor *color = [self colorAtPoint:location];
+        [self colorAtPoint:location];
     }
 }
 
+- (void) touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    // Dismiss the keypads
+    [self.hexColorBox resignFirstResponder];
+    [self.borderBox resignFirstResponder];
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    
+    // Don't color pick if there's no image, or the user clicks outside of the image view
+    if (CGRectContainsPoint(self.customImageView.bounds, location) && !CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
+        [self colorAtPoint:location];
+    }
+}
+
+#pragma mark - Image picker methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *thisImage = info[UIImagePickerControllerOriginalImage];
     
@@ -90,30 +95,7 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (UIColor *) colorAtPoint:(CGPoint) point {
-    unsigned char pixel[4] = {0};
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pixel, 1, 1, 8, 4, colorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
-    CGContextTranslateCTM(context, -point.x, -point.y);
-    [self.customImageView.layer renderInContext:context];
-    
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    
-    [self.redSlider setValue:pixel[0]];
-    [self.greenSlider setValue:pixel[1]];
-    [self.blueSlider setValue:pixel[2]];
-    [self registerSliderChanges];
-    
-    UIColor *color = [UIColor colorWithRed:pixel[0]/255.0 green:pixel[1]/255.0 blue:pixel[2]/255.0 alpha:pixel[3]/255.0];
-    return color;
-}
-
-- (IBAction)dismissCustomizeVC:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
+#pragma mark - Slider handling methods
 - (IBAction)redSliderChanged:(id)sender {
     NSString *redString = [NSString stringWithFormat:@"%d", (int)self.redSlider.value];
     [self.redLabel setText:redString];
@@ -139,9 +121,28 @@
     
     UIColor *color = [UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0];
     [self.colorField setBackgroundColor:color];
-    NSLog(@"HI");
 }
 
+- (UIColor *) colorAtPoint:(CGPoint) point {
+    unsigned char pixel[4] = {0};
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(pixel, 1, 1, 8, 4, colorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
+    CGContextTranslateCTM(context, -point.x, -point.y);
+    [self.customImageView.layer renderInContext:context];
+    
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    
+    [self.redSlider setValue:pixel[0]];
+    [self.greenSlider setValue:pixel[1]];
+    [self.blueSlider setValue:pixel[2]];
+    [self registerSliderChanges];
+    
+    UIColor *color = [UIColor colorWithRed:pixel[0]/255.0 green:pixel[1]/255.0 blue:pixel[2]/255.0 alpha:pixel[3]/255.0];
+    return color;
+}
+
+#pragma mark - Converts color format
 // Translates the slider RGB values into the corresponding hex color
 - (NSString *)colorToHex:(int)red :(int)green :(int)blue {
     CGFloat r = red;
@@ -151,15 +152,81 @@
             lroundf(r), lroundf(g), lroundf(b)];
 }
 
-- (IBAction)renderHexColor:(id)sender {
+// Translates the hex box value into the corresponding colors and changes values accordingly
+- (void)colorFromHex:(NSString *)hex {
+    unsigned rgbValue = 0;
+    // Scans the values from the string object
+    NSScanner *scanner = [NSScanner scannerWithString:hex];
+    [scanner setScanLocation:1]; // Skip #
+    [scanner scanHexInt:&rgbValue];
+    
+    [self.redSlider setValue:((rgbValue & 0xFF0000) >> 16)];
+    [self.greenSlider setValue:((rgbValue & 0xFF00) >> 8)];
+    [self.blueSlider setValue:(rgbValue & 0xFF)];
+    
+    NSString *redString = [NSString stringWithFormat:@"%d", (int)self.redSlider.value];
+    [self.redLabel setText:redString];
+    
+    NSString *greenString = [NSString stringWithFormat:@"%d", (int)self.greenSlider.value];
+    [self.greenLabel setText:greenString];
+
+    NSString *blueString = [NSString stringWithFormat:@"%d", (int)self.blueSlider.value];
+    [self.blueLabel setText:blueString];
+
+    UIColor *color = [UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0];
+    [self.colorField setBackgroundColor:color];
+    //[self registerSliderChanges];
 }
 
-- (IBAction)changeBorderWidth:(id)sender {
+#pragma mark - Keyboard handling methods
+// Move the view upwards or downwards based on the presence of a keyboard
+- (void)keyboardWillShow:(NSNotification*)notif {
+    [UIView animateWithDuration:0.25 animations:^{
+         CGRect newFrame = [self.view frame];
+        
+         // Clicking on two text fields will displace the view only once
+         if (newFrame.origin.y == 0) {
+            newFrame.origin.y -= 250;
+         }
+         [self.view setFrame:newFrame];
+         
+     }completion:^(BOOL finished) {}];
 }
 
-// UIScrollView methods
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.customImageView;
+- (void)keyboardWillBeHidden:(NSNotification*)notif {
+    [UIView animateWithDuration:0.25 animations:^{
+         CGRect newFrame = [self.view frame];
+         if (newFrame.origin.y == -250) {
+            newFrame.origin.y += 250;
+         }
+         [self.view setFrame:newFrame];
+     }completion:^(BOOL finished) {}];
+}
+
+#pragma mark - Handles user changes to text boxes
+// If a proper hex color code is entered, the color changes will be registered
+- (void)renderHexColor {
+    NSLog(@"CALLED");
+    NSCharacterSet *chars = [[NSCharacterSet
+                              characterSetWithCharactersInString:@"#0123456789ABCDEF"] invertedSet];
+    BOOL isValid = (NSNotFound == [self.hexColorBox.text rangeOfCharacterFromSet:chars].location);
+    if (!isValid) [self.hexColorBox setText:@"#FFFFFF"];
+    
+    unsigned long times = [[self.hexColorBox.text componentsSeparatedByString:@"#"] count]-1;
+    if (times > 1) [self.hexColorBox setText:@"#FFFFFF"];
+    
+    [self colorFromHex:self.hexColorBox.text];
+}
+
+- (IBAction)hexValueChanged:(id)sender {
+    [self renderHexColor];
+}
+
+// If a proper number is entered, the border around the image will be adjusted
+- (void)changeBorderWidth {
+    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc] init];
+    BOOL isNumber = [numFormat numberFromString:self.borderBox.text] != nil;
+    if (!isNumber) [self.borderBox setText:@""];
 }
 
 @end
