@@ -116,7 +116,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                    <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="alert"/>
                     <connections>
                         <action selector="hexValueChanged:" destination="-1" eventType="valueChanged" id="Q3H-vu-Lnd"/>
                     </connections>

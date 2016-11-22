@@ -11,7 +11,7 @@
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate>
+@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @end
 
 @implementation CustomizePhotoViewController
@@ -175,7 +175,6 @@
 
     UIColor *color = [UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0];
     [self.colorField setBackgroundColor:color];
-    //[self registerSliderChanges];
 }
 
 #pragma mark - Keyboard handling methods
@@ -206,15 +205,17 @@
 #pragma mark - Handles user changes to text boxes
 // If a proper hex color code is entered, the color changes will be registered
 - (void)renderHexColor {
-    NSLog(@"CALLED");
     NSCharacterSet *chars = [[NSCharacterSet
                               characterSetWithCharactersInString:@"#0123456789ABCDEF"] invertedSet];
-    BOOL isValid = (NSNotFound == [self.hexColorBox.text rangeOfCharacterFromSet:chars].location);
-    if (!isValid) [self.hexColorBox setText:@"#FFFFFF"];
-    
-    unsigned long times = [[self.hexColorBox.text componentsSeparatedByString:@"#"] count]-1;
-    if (times > 1) [self.hexColorBox setText:@"#FFFFFF"];
-    
+    if (self.hexColorBox.text == nil || self.hexColorBox.text.length < 1) {
+        [self.hexColorBox setText:@"#FFFFFF"];
+    } else {
+        BOOL isValid = (NSNotFound == [self.hexColorBox.text rangeOfCharacterFromSet:chars].location);
+        if (!isValid) [self.hexColorBox setText:@"#FFFFFF"];
+        
+        unsigned long times = [[self.hexColorBox.text componentsSeparatedByString:@"#"] count]-1;
+        if (times > 1) [self.hexColorBox setText:@"#FFFFFF"];
+    }
     [self colorFromHex:self.hexColorBox.text];
 }
 
