@@ -24,7 +24,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *greenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *blueLabel;
 @property (weak, nonatomic) IBOutlet UIView *colorField;
-- (IBAction)renderHexColor:(id)sender;
-- (IBAction)changeBorderWidth:(id)sender;
 
 @end

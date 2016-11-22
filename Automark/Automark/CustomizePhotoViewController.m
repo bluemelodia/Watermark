@@ -7,6 +7,7 @@
 //
 
 #import "CustomizePhotoViewController.h"
+#import "UIImageBorder.h"
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
@@ -228,6 +229,13 @@
     NSNumberFormatter *numFormat = [[NSNumberFormatter alloc] init];
     BOOL isNumber = [numFormat numberFromString:self.borderBox.text] != nil;
     if (!isNumber) [self.borderBox setText:@""];
+    
+    if (!CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
+        UIImage *image = self.customImageView.image;
+        UIImage *borderImage = [image imageBorderedWithColor:[UIColor redColor] borderWidth:3.0];
+        self.customImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.customImageView setImage:borderImage];
+    }
 }
 
 @end
