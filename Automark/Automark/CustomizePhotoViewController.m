@@ -122,6 +122,7 @@
     
     UIColor *color = [UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0];
     [self.colorField setBackgroundColor:color];
+    [self changeBorderWidth];
 }
 
 - (UIColor *) colorAtPoint:(CGPoint) point {
@@ -218,6 +219,7 @@
         if (times > 1) [self.hexColorBox setText:@"#FFFFFF"];
     }
     [self colorFromHex:self.hexColorBox.text];
+    [self changeBorderWidth];
 }
 
 - (IBAction)hexValueChanged:(id)sender {
@@ -232,7 +234,8 @@
     
     if (!CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
         UIImage *image = self.customImageView.image;
-        UIImage *borderImage = [image imageBorderedWithColor:[UIColor redColor] borderWidth:3.0];
+        CGFloat borderWidth = [[numFormat numberFromString:self.borderBox.text] floatValue];
+        UIImage *borderImage = [image imageBorderedWithColor:[UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0] borderWidth:borderWidth];
         self.customImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.customImageView setImage:borderImage];
     }
