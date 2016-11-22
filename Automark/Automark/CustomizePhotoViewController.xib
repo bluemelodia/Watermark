@@ -44,7 +44,7 @@
                                 <action selector="saveImage:" destination="-1" id="DR9-ES-E9A"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="                                                        " id="jUO-aF-TAJ"/>
+                        <barButtonItem title="                                                          " id="jUO-aF-TAJ"/>
                         <barButtonItem systemItem="stop" id="9Jg-Nz-S3e">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

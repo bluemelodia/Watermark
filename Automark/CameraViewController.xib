@@ -44,7 +44,7 @@
                                 <action selector="saveImage:" destination="-1" id="RE3-6D-ZsC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem enabled="NO" title="                                                       " style="plain" id="QSr-PN-6SA"/>
+                        <barButtonItem enabled="NO" title="                                                          " style="plain" id="QSr-PN-6SA"/>
                         <barButtonItem style="plain" systemItem="stop" id="IWr-Hj-3ll">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

@@ -9,11 +9,13 @@
 #import "AutoMenuCollectionViewController.h"
 #import "CameraViewController.h"
 #import "CustomizePhotoViewController.h"
+#import "WatermarkViewController.h"
 
 @interface AutoMenuCollectionViewController () {
     NSArray *menuPhotos;
     CameraViewController *camVC;
     CustomizePhotoViewController *custVC;
+    WatermarkViewController *waterVC;
 }
 
 @end
@@ -80,7 +82,8 @@ static NSString * const reuseIdentifier = @"MenuCell";
         custVC = [[CustomizePhotoViewController alloc] init];
         [self presentViewController:custVC animated:YES completion:nil];
     } else {
-        NSLog(@"Marker");
+        waterVC = [[WatermarkViewController alloc] init];
+        [self presentViewController:waterVC animated:YES completion:nil];
     }
 }
 

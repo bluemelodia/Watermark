@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WatermarkViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="waterImageView" destination="vvj-PQ-wDN" id="kTD-vU-QAr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1f-At-SjU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <items>
+                        <barButtonItem image="Folder" id="5B7-82-ogk">
+                            <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="getImageFromPhotos:" destination="-1" id="DQq-el-Lk6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Save" id="CQg-wI-Z05">
+                            <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveImage:" destination="-1" id="WBF-8t-FRB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="                                                           " id="nBe-QX-cn6"/>
+                        <barButtonItem systemItem="stop" id="CxE-N7-HGj">
+                            <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="dismissCustomizeVC:" destination="-1" id="NQp-QX-0g0"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-PQ-wDN">
+                    <rect key="frame" x="0.0" y="44" width="375" height="417"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="417" id="l9X-ZP-V8q"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-o8-iEP">
+                    <rect key="frame" x="0.0" y="461" width="375" height="206"/>
+                    <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.98823529409999999" green="0.53333333329999999" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="ev8-o8-iEP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Aiu-61-Pm2"/>
+                <constraint firstAttribute="trailing" secondItem="vvj-PQ-wDN" secondAttribute="trailing" id="DWl-ZA-hEJ"/>
+                <constraint firstItem="vvj-PQ-wDN" firstAttribute="top" secondItem="C1f-At-SjU" secondAttribute="bottom" id="JbF-cj-NkW"/>
+                <constraint firstAttribute="trailing" secondItem="C1f-At-SjU" secondAttribute="trailing" id="Jo4-9W-Kpk"/>
+                <constraint firstItem="C1f-At-SjU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QDO-eN-4Yc"/>
+                <constraint firstAttribute="trailing" secondItem="ev8-o8-iEP" secondAttribute="trailing" id="c5c-D9-ldX"/>
+                <constraint firstItem="vvj-PQ-wDN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lhB-Xe-zQ1"/>
+                <constraint firstItem="ev8-o8-iEP" firstAttribute="top" secondItem="vvj-PQ-wDN" secondAttribute="bottom" id="qs9-Gw-QnJ"/>
+                <constraint firstAttribute="bottom" secondItem="ev8-o8-iEP" secondAttribute="bottom" id="vdN-bx-M0u"/>
+                <constraint firstItem="C1f-At-SjU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xXG-O8-3Za"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="72.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Folder" width="22" height="22"/>
+        <image name="Save" width="22" height="22"/>
+    </resources>
+</document>
