@@ -38,7 +38,7 @@
                                 <action selector="takePhoto:" destination="-1" id="N1p-nu-47t"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="save" id="ipd-0o-ijq">
+                        <barButtonItem image="Save" style="plain" id="ipd-0o-ijq">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveImage:" destination="-1" id="RE3-6D-ZsC"/>
@@ -73,4 +73,7 @@
             <point key="canvasLocation" x="33.5" y="91.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Save" width="22" height="22"/>
+    </resources>
 </document>

@@ -5,17 +5,24 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "FB4CD5F50F9BD9D0C15CE285151820A06B155002" : 0,
+    "B496CEB2A048533ADFDFC4FC24DBE54EA28BF490" : 9223372036854775807,
     "C86682226C67A432B661D4A73C95F2EE59E58526" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BC783146-DCEA-4DA4-811F-A3C517218FC9",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "FB4CD5F50F9BD9D0C15CE285151820A06B155002" : "Watermark\/",
+    "B496CEB2A048533ADFDFC4FC24DBE54EA28BF490" : "Watermark\/colorpicker\/",
     "C86682226C67A432B661D4A73C95F2EE59E58526" : ""
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Automark",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Automark\/Automark.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kartech\/colorpicker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B496CEB2A048533ADFDFC4FC24DBE54EA28BF490"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bluemelodia\/DeviantArt-JournalSkins.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

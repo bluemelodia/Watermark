@@ -26,7 +26,7 @@ static NSString * const reuseIdentifier = @"MenuCell";
     [super viewDidLoad];
     
     // Initialize menu image array
-    menuPhotos = [NSArray arrayWithObjects:[UIImage imageNamed:@"CameraW"], [UIImage imageNamed:@"CollageW"], [UIImage imageNamed:@"TabletW"], [UIImage imageNamed:@"Marker"], nil];
+    menuPhotos = [NSArray arrayWithObjects:[UIImage imageNamed:@"CameraW"], [UIImage imageNamed:@"CollageW"], [UIImage imageNamed:@"Border"], [UIImage imageNamed:@"Marker"], nil];
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
