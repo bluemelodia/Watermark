@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Customize the alert label
     label.alpha = 0;
     const CGFloat fontSize = 18;
     label = [[AlertLabel alloc] initWithFrame:CGRectZero];

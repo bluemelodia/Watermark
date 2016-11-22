@@ -7,18 +7,33 @@
 //
 
 #import "CustomizePhotoViewController.h"
+#import "AlertLabel.h"
 #import "UIImageBorder.h"
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+    AlertLabel *label;
+}
 @end
 
 @implementation CustomizePhotoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Customize the alert label
+    label.alpha = 0;
+    const CGFloat fontSize = 18;
+    label = [[AlertLabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor whiteColor];
+    label.font = [UIFont fontWithName:@"Verdana" size:fontSize];
+    label.textColor = [UIColor brownColor];
+    label.layer.masksToBounds = YES;
+    label.layer.cornerRadius = 8.0;
+    
+    [self.customImageView addSubview:label];
     
     self.hexColorBox.autocorrectionType = UITextAutocorrectionTypeNo;
     
@@ -239,6 +254,38 @@
         self.customImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.customImageView setImage:borderImage];
     }
+}
+
+#pragma mark - Save user's photo
+- (IBAction)saveImage:(id)sender {
+    if (!CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
+        UIImageWriteToSavedPhotosAlbum(self.customImageView.image, nil, nil, nil);
+        [self displayMessage:@" Saved to Photo Library "];
+    }
+}
+
+- (void)displayMessage:(NSString *)message {
+    label.text = message;
+    [label sizeToFit]; // moves the receiver view so it just encloses it subviews
+    
+    label.alpha = 0.0;
+    label.hidden = NO;
+    
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        label.alpha = 0.8;
+    }];
+    
+    label.center = CGPointMake(self.customImageView.bounds.size.width/2, self.customImageView.bounds.size.height/2-label.bounds.size.height/2);
+    
+    [self performSelector:@selector(hideTempMessage) withObject:nil afterDelay:1.0];
+}
+
+- (void)hideTempMessage {
+    [UIView animateWithDuration:0.5 delay:1 options:0 animations:^{
+        label.alpha = 0;
+    } completion:^(BOOL finished) {
+        label.hidden = YES;
+    }];
 }
 
 @end
