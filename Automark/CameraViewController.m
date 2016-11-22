@@ -7,9 +7,12 @@
 //
 
 #import "CameraViewController.h"
+#import "AlertLabel.h"
 
 /* The UINavigationControllerDelegate is necessary because the camera/photo library will be presented modally to the user. */
-@interface CameraViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CameraViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+    AlertLabel *label;
+}
 
 @end
 
@@ -17,6 +20,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    label.alpha = 0;
+    const CGFloat fontSize = 18;
+    label = [[AlertLabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor whiteColor];
+    label.font = [UIFont fontWithName:@"Verdana" size:fontSize];
+    label.textColor = [UIColor brownColor];
+    label.layer.masksToBounds = YES;
+    label.layer.cornerRadius = 8.0;
+
+    [self.camImageView addSubview:label];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +75,6 @@
     NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"original.png"];
     
     // Extract the image from the picker and save it
-    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImagePNGRepresentation(image);
     [imageData writeToFile:imagePath atomically:YES];
@@ -70,16 +84,48 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (IBAction)selectPhoto:(id)sender {
+- (IBAction)saveImage:(id)sender {
+    UIImage *thisImage = self.camImageView.image;
+    if (thisImage) {
+        UIImageWriteToSavedPhotosAlbum(thisImage, nil, nil, nil);
+        [self displayMessage:@" Saved to Photo Library "];
+    }
+}
+
+/*- (IBAction)selectPhoto:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = NO;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:picker animated:YES completion:NULL];
-}
+}*/
 
 - (IBAction)dismissCameraVC:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)displayMessage:(NSString *)message {
+    label.text = message;
+    [label sizeToFit]; // moves the receiver view so it just encloses it subviews
+    
+    label.alpha = 0.0;
+    label.hidden = NO;
+    
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        label.alpha = 0.8;
+    }];
+    
+    label.center = CGPointMake(self.camImageView.bounds.size.width/2, self.camImageView.bounds.size.height/2-label.bounds.size.height/2);
+
+    [self performSelector:@selector(hideTempMessage) withObject:nil afterDelay:1.0];
+}
+
+- (void)hideTempMessage {
+    [UIView animateWithDuration:0.5 delay:1 options:0 animations:^{
+        label.alpha = 0;
+    } completion:^(BOOL finished) {
+        label.hidden = YES;
+    }];
 }
 
 @end

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController">
             <connections>
                 <outlet property="camImageView" destination="3if-H9-mQo" id="1xb-XJ-wh8"/>
+                <outlet property="camView" destination="i5M-Pr-FkT" id="US2-Ca-9eR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,13 +38,13 @@
                                 <action selector="takePhoto:" destination="-1" id="N1p-nu-47t"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="organize" id="BmG-s5-OYG">
+                        <barButtonItem style="plain" systemItem="save" id="ipd-0o-ijq">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="selectPhoto:" destination="-1" id="afd-3S-apl"/>
+                                <action selector="saveImage:" destination="-1" id="RE3-6D-ZsC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem enabled="NO" title="                                                           " style="plain" id="QSr-PN-6SA"/>
+                        <barButtonItem enabled="NO" title="                                                       " style="plain" id="QSr-PN-6SA"/>
                         <barButtonItem style="plain" systemItem="stop" id="IWr-Hj-3ll">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

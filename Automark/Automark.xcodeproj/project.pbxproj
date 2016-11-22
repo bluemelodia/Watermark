@@ -21,6 +21,7 @@
 		C931BE021DE371C700A7D074 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C931BE001DE371C700A7D074 /* CameraViewController.xib */; };
 		C9F0D6B11DE3AF480031BB53 /* CustomizePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F0D6AF1DE3AF480031BB53 /* CustomizePhotoViewController.m */; };
 		C9F0D6B21DE3AF480031BB53 /* CustomizePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F0D6B01DE3AF480031BB53 /* CustomizePhotoViewController.xib */; };
+		C9F0D6B81DE3F73E0031BB53 /* AlertLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F0D6B71DE3F73E0031BB53 /* AlertLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		C9F0D6AE1DE3AF480031BB53 /* CustomizePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizePhotoViewController.h; sourceTree = "<group>"; };
 		C9F0D6AF1DE3AF480031BB53 /* CustomizePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizePhotoViewController.m; sourceTree = "<group>"; };
 		C9F0D6B01DE3AF480031BB53 /* CustomizePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomizePhotoViewController.xib; sourceTree = "<group>"; };
+		C9F0D6B61DE3F73E0031BB53 /* AlertLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLabel.h; sourceTree = "<group>"; };
+		C9F0D6B71DE3F73E0031BB53 /* AlertLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				C931BDFE1DE371C700A7D074 /* CameraViewController.h */,
 				C931BDFF1DE371C700A7D074 /* CameraViewController.m */,
 				C931BE001DE371C700A7D074 /* CameraViewController.xib */,
+				C9F0D6B61DE3F73E0031BB53 /* AlertLabel.h */,
+				C9F0D6B71DE3F73E0031BB53 /* AlertLabel.m */,
 				C9F0D6AE1DE3AF480031BB53 /* CustomizePhotoViewController.h */,
 				C9F0D6AF1DE3AF480031BB53 /* CustomizePhotoViewController.m */,
 				C9F0D6B01DE3AF480031BB53 /* CustomizePhotoViewController.xib */,
@@ -304,6 +309,7 @@
 				C931BDC41DE3637500A7D074 /* main.m in Sources */,
 				C931BDFA1DE3643800A7D074 /* AutoMenuCollectionViewController.m in Sources */,
 				C9F0D6B11DE3AF480031BB53 /* CustomizePhotoViewController.m in Sources */,
+				C9F0D6B81DE3F73E0031BB53 /* AlertLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
