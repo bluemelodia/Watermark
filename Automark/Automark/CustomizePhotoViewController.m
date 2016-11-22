@@ -8,7 +8,7 @@
 
 #import "CustomizePhotoViewController.h"
 
-@interface CustomizePhotoViewController ()
+@interface CustomizePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
@@ -16,8 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,6 +25,24 @@
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *thisImage = info[UIImagePickerControllerOriginalImage];
+    
+    // Resize the UIImageView according to the size of the image
+    self.customImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.customImageView setImage:thisImage];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+    
+- (IBAction)getImageFromPhotos:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = NO;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (IBAction)dismissCustomizeVC:(id)sender {

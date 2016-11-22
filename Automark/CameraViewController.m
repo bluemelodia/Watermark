@@ -92,14 +92,6 @@
     }
 }
 
-/*- (IBAction)selectPhoto:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = NO;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:picker animated:YES completion:NULL];
-}*/
-
 - (IBAction)dismissCameraVC:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

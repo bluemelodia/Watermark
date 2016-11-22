@@ -10,4 +10,6 @@
 
 @interface CustomizePhotoViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *customImageView;
+
 @end
