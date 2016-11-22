@@ -17,6 +17,7 @@
                 <outlet property="customImageView" destination="eOx-yI-Z7W" id="CxY-GN-OPv"/>
                 <outlet property="greenLabel" destination="KAF-7M-rDm" id="lfQ-K8-c21"/>
                 <outlet property="greenSlider" destination="Rhb-eW-cUb" id="V3Q-j3-T6r"/>
+                <outlet property="hexColorBox" destination="kii-4f-3tw" id="CBh-V4-cr4"/>
                 <outlet property="redLabel" destination="bd4-DA-XaK" id="9Z6-oI-n89"/>
                 <outlet property="redSlider" destination="NGx-cX-VwI" id="5Jd-u9-CRC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -60,7 +61,7 @@
                     <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="NGx-cX-VwI">
-                    <rect key="frame" x="14" y="491" width="293" height="31"/>
+                    <rect key="frame" x="14" y="491" width="293.00000000000011" height="30.999999999999972"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="minimumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -68,7 +69,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Rhb-eW-cUb">
-                    <rect key="frame" x="14" y="530" width="293" height="31"/>
+                    <rect key="frame" x="14" y="530" width="293.00000000000011" height="31.000000000000057"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="minimumTrackTintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -76,40 +77,40 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Y7n-Vl-DHP">
-                    <rect key="frame" x="14" y="567" width="293" height="31"/>
+                    <rect key="frame" x="14" y="567" width="293.00000000000011" height="30.999999999999943"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="blueSliderChanged:" destination="-1" eventType="valueChanged" id="UO8-kR-MED"/>
                     </connections>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd4-DA-XaK">
-                    <rect key="frame" x="313" y="494" width="42" height="21"/>
+                    <rect key="frame" x="313" y="495.53212851405624" width="41.999999999999915" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAF-7M-rDm">
-                    <rect key="frame" x="313" y="534" width="42" height="21"/>
+                    <rect key="frame" x="313" y="535.53212851405624" width="41.999999999999915" height="21.000000000000057"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhp-28-4vy">
-                    <rect key="frame" x="313" y="570" width="42" height="21"/>
+                    <rect key="frame" x="313" y="571.53212851405624" width="41.999999999999915" height="20.999999999999943"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egr-Qs-bWe">
-                    <rect key="frame" x="16" y="610" width="73" height="29"/>
+                    <rect key="frame" x="16" y="610" width="73.000000000000043" height="28.999999999999829"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Border Width" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s9N-qz-mqR">
-                    <rect key="frame" x="230" y="609" width="115" height="30"/>
+                    <rect key="frame" x="230" y="610.53212851405624" width="114.99999999999997" height="29.999999999999943"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -119,7 +120,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hex Color Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kii-4f-3tw">
-                    <rect key="frame" x="102" y="610" width="115" height="30"/>
+                    <rect key="frame" x="102" y="610" width="115" height="29.999999999999943"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

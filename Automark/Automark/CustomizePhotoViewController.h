@@ -18,6 +18,7 @@
 - (IBAction)redSliderChanged:(id)sender;
 - (IBAction)greenSliderChanged:(id)sender;
 - (IBAction)blueSliderChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *hexColorBox;
 @property (weak, nonatomic) IBOutlet UILabel *redLabel;
 @property (weak, nonatomic) IBOutlet UILabel *greenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *blueLabel;

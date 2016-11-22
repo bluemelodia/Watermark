@@ -16,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set the hex text to the default color
+    NSString *str = [self colorToHex:(int)self.redSlider.value :(int)self.greenSlider.value :(int)self.blueSlider.value];
+    [self.hexColorBox setText:str];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +37,7 @@
     
     // Don't color pick if there's no image, or the user clicks outside of the image view
     if (CGRectContainsPoint(self.customImageView.bounds, location) && !CGSizeEqualToSize(self.customImageView.image.size, CGSizeZero)) {
-        [self colorAtPoint:location];
+        UIColor *color = [self colorAtPoint:location];
     }
 }
 
@@ -45,8 +49,6 @@
     [self.customImageView setImage:thisImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    UIColor *selectedColor = [self colorAtPoint:CGPointMake(0, 0)];
-    
 }
     
 - (IBAction)getImageFromPhotos:(id)sender {
@@ -67,8 +69,11 @@
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
     
-    NSLog(@"pixel: %d %d %d %d", pixel[0], pixel[1], pixel[2], pixel[3]);
-
+    [self.redSlider setValue:pixel[0]];
+    [self.greenSlider setValue:pixel[1]];
+    [self.blueSlider setValue:pixel[2]];
+    [self registerSliderChanges];
+    
     UIColor *color = [UIColor colorWithRed:pixel[0]/255.0 green:pixel[1]/255.0 blue:pixel[2]/255.0 alpha:pixel[3]/255.0];
     return color;
 }
@@ -81,20 +86,31 @@
 - (IBAction)redSliderChanged:(id)sender {
     NSString *redString = [NSString stringWithFormat:@"%d", (int)self.redSlider.value];
     [self.redLabel setText:redString];
-    NSString *str = [self colorToHex:(int)self.redSlider.value :(int)self.greenSlider.value :(int)self.blueSlider.value];
-    NSLog(str);
+    [self registerSliderChanges];
 }
 
 - (IBAction)greenSliderChanged:(id)sender {
     NSString *greenString = [NSString stringWithFormat:@"%d", (int)self.greenSlider.value];
     [self.greenLabel setText:greenString];
+    [self registerSliderChanges];
 }
 
 - (IBAction)blueSliderChanged:(id)sender {
     NSString *blueString = [NSString stringWithFormat:@"%d", (int)self.blueSlider.value];
     [self.blueLabel setText:blueString];
+    [self registerSliderChanges];
 }
 
+// Fill the hex box and color view according to the slider or selected values
+- (void)registerSliderChanges {
+    NSString *str = [self colorToHex:(int)self.redSlider.value :(int)self.greenSlider.value :(int)self.blueSlider.value];
+    [self.hexColorBox setText:str];
+    
+    UIColor *color = [UIColor colorWithRed:self.redSlider.value/255.0 green:self.greenSlider.value/255.0 blue:self.blueSlider.value/255.0 alpha:1.0];
+    [self.colorField setBackgroundColor:color];
+}
+
+// Translates the slider RGB values into the corresponding hex color
 - (NSString *)colorToHex:(int)red :(int)green :(int)blue {
     CGFloat r = red;
     CGFloat g = green;
