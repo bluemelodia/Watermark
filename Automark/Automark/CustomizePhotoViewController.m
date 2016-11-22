@@ -77,4 +77,35 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+- (IBAction)redSliderChanged:(id)sender {
+    NSString *redString = [NSString stringWithFormat:@"%d", (int)self.redSlider.value];
+    [self.redLabel setText:redString];
+    NSString *str = [self colorToHex:(int)self.redSlider.value :(int)self.greenSlider.value :(int)self.blueSlider.value];
+    NSLog(str);
+}
+
+- (IBAction)greenSliderChanged:(id)sender {
+    NSString *greenString = [NSString stringWithFormat:@"%d", (int)self.greenSlider.value];
+    [self.greenLabel setText:greenString];
+}
+
+- (IBAction)blueSliderChanged:(id)sender {
+    NSString *blueString = [NSString stringWithFormat:@"%d", (int)self.blueSlider.value];
+    [self.blueLabel setText:blueString];
+}
+
+- (NSString *)colorToHex:(int)red :(int)green :(int)blue {
+    CGFloat r = red;
+    CGFloat g = green;
+    CGFloat b = blue;
+    return [NSString stringWithFormat:@"#%02lX%02lX%02lX",
+            lroundf(r), lroundf(g), lroundf(b)];
+}
+
+- (IBAction)renderHexColor:(id)sender {
+}
+
+- (IBAction)changeBorderWidth:(id)sender {
+}
 @end

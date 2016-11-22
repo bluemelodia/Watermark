@@ -11,7 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomizePhotoViewController">
             <connections>
+                <outlet property="blueLabel" destination="fhp-28-4vy" id="Y65-xm-yAd"/>
+                <outlet property="blueSlider" destination="Y7n-Vl-DHP" id="mjA-tn-HR7"/>
+                <outlet property="colorField" destination="egr-Qs-bWe" id="9Xo-Uy-a3h"/>
                 <outlet property="customImageView" destination="eOx-yI-Z7W" id="CxY-GN-OPv"/>
+                <outlet property="greenLabel" destination="KAF-7M-rDm" id="lfQ-K8-c21"/>
+                <outlet property="greenSlider" destination="Rhb-eW-cUb" id="V3Q-j3-T6r"/>
+                <outlet property="redLabel" destination="bd4-DA-XaK" id="9Z6-oI-n89"/>
+                <outlet property="redSlider" destination="NGx-cX-VwI" id="5Jd-u9-CRC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,9 +27,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlO-wI-KXz">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlO-wI-KXz">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem image="Folder" style="plain" id="nC6-IT-p7D">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,76 +49,110 @@
                     </items>
                     <color key="barTintColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                 </toolbar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eOx-yI-Z7W">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOx-yI-Z7W">
                     <rect key="frame" x="0.0" y="44" width="375" height="417"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="417" id="HKD-2S-P9L"/>
+                    </constraints>
                 </imageView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="BXy-rr-Fms">
-                    <rect key="frame" x="95" y="637" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </activityIndicatorView>
-                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="256" translatesAutoresizingMaskIntoConstraints="NO" id="NGx-cX-VwI">
-                    <rect key="frame" x="14" y="498.65869565217372" width="292.99999999999989" height="31"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pg4-55-yi3">
+                    <rect key="frame" x="0.0" y="461" width="375" height="206"/>
+                    <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="NGx-cX-VwI">
+                    <rect key="frame" x="14" y="491" width="293" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="minimumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="redSliderChanged:" destination="-1" eventType="valueChanged" id="0IK-jO-2Ds"/>
+                    </connections>
                 </slider>
-                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="256" translatesAutoresizingMaskIntoConstraints="NO" id="Rhb-eW-cUb">
-                    <rect key="frame" x="14" y="538.31739130434789" width="292.99999999999989" height="31"/>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Rhb-eW-cUb">
+                    <rect key="frame" x="14" y="530" width="293" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="minimumTrackTintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="greenSliderChanged:" destination="-1" eventType="valueChanged" id="A1W-ly-8IH"/>
+                    </connections>
                 </slider>
-                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="256" translatesAutoresizingMaskIntoConstraints="NO" id="Y7n-Vl-DHP">
-                    <rect key="frame" x="14" y="574.65869565217395" width="292.99999999999989" height="31"/>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Y7n-Vl-DHP">
+                    <rect key="frame" x="14" y="567" width="293" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="blueSliderChanged:" destination="-1" eventType="valueChanged" id="UO8-kR-MED"/>
+                    </connections>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd4-DA-XaK">
-                    <rect key="frame" x="313.00000000000011" y="502" width="42.000000000000028" height="21.000000000000028"/>
+                    <rect key="frame" x="313" y="494" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAF-7M-rDm">
-                    <rect key="frame" x="313.00000000000011" y="542.34130434782605" width="42.000000000000028" height="20.999999999999943"/>
+                    <rect key="frame" x="313" y="534" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhp-28-4vy">
-                    <rect key="frame" x="313.00000000000011" y="578" width="42.000000000000028" height="21.000000000000057"/>
+                    <rect key="frame" x="313" y="570" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egr-Qs-bWe">
-                    <rect key="frame" x="16" y="618" width="73" height="29"/>
+                    <rect key="frame" x="16" y="610" width="73" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Border Width" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s9N-qz-mqR">
-                    <rect key="frame" x="230" y="617" width="115" height="30"/>
+                    <rect key="frame" x="230" y="609" width="115" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                    <connections>
+                        <action selector="changeBorderWidth:" destination="-1" eventType="valueChanged" id="cYl-fz-7tY"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hex Color Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kii-4f-3tw">
-                    <rect key="frame" x="102" y="618" width="115" height="30"/>
+                    <rect key="frame" x="102" y="610" width="115" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="renderHexColor:" destination="-1" eventType="valueChanged" id="1Mf-ne-cnG"/>
+                    </connections>
                 </textField>
             </subviews>
             <color key="backgroundColor" red="0.98823529409999999" green="0.53333333329999999" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="eOx-yI-Z7W" firstAttribute="leading" secondItem="hlO-wI-KXz" secondAttribute="leading" id="43Y-Mq-4Jy"/>
+                <constraint firstItem="eOx-yI-Z7W" firstAttribute="trailing" secondItem="pg4-55-yi3" secondAttribute="trailing" id="8ai-xj-UVA"/>
+                <constraint firstItem="eOx-yI-Z7W" firstAttribute="leading" secondItem="pg4-55-yi3" secondAttribute="leading" id="9cw-Jl-MlV"/>
+                <constraint firstItem="pg4-55-yi3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JP3-6K-MZK"/>
+                <constraint firstItem="eOx-yI-Z7W" firstAttribute="top" secondItem="hlO-wI-KXz" secondAttribute="bottom" id="OO3-Zl-usA"/>
+                <constraint firstItem="eOx-yI-Z7W" firstAttribute="trailing" secondItem="hlO-wI-KXz" secondAttribute="trailing" id="WA5-9I-tjF"/>
+                <constraint firstItem="pg4-55-yi3" firstAttribute="top" secondItem="eOx-yI-Z7W" secondAttribute="bottom" id="cvl-eX-MKQ"/>
+                <constraint firstAttribute="trailing" secondItem="pg4-55-yi3" secondAttribute="trailing" id="eRC-y7-P8S"/>
+                <constraint firstItem="pg4-55-yi3" firstAttribute="top" secondItem="eOx-yI-Z7W" secondAttribute="bottom" id="opO-0r-ZTX"/>
+                <constraint firstItem="eOx-yI-Z7W" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="u8y-8J-WOM"/>
+                <constraint firstAttribute="bottom" secondItem="pg4-55-yi3" secondAttribute="bottom" id="yXj-Pc-vHq"/>
+            </constraints>
             <point key="canvasLocation" x="33.5" y="91.5"/>
         </view>
         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="nTB-lK-YP8">
             <rect key="frame" x="0.0" y="0.0" width="118" height="31"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
         </slider>
+        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="Ch7-VC-1kB">
+            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        </activityIndicatorView>
     </objects>
     <resources>
         <image name="Folder" width="22" height="22"/>
