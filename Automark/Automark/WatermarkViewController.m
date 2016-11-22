@@ -32,6 +32,7 @@
     label.layer.cornerRadius = 8.0;
     
     self.watermark.delegate = self;
+    self.watermark.alpha = 0.0;
     [self.waterImageView addSubview:label];
     [self registEditor4WithTextView:self.watermark];
 }
@@ -69,7 +70,11 @@
 
 #pragma mark - Watermark
 - (IBAction)addWatermark:(id)sender {
-    
+    if (self.watermark.alpha == 0.0) {
+        self.watermark.alpha = 1.0;
+    } else {
+        self.watermark.alpha = 0.0;
+    }
 }
 
 // Source: http://stackoverflow.com/questions/50467/how-do-i-size-a-uitextview-to-its-content
