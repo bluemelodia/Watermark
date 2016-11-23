@@ -57,7 +57,7 @@
     }
     self.fontPicker.dataSource = self;
     self.fontPicker.delegate = self;
-    [self.fontPicker setFrame:CGRectMake(self.pickerView.frame.origin.x, self.pickerView.frame.origin.y, self.pickerView.frame.size.width*0.95, self.pickerView.frame.size.height*0.8)];
+    [self.fontPicker setFrame:CGRectMake(self.pickerView.frame.origin.x, self.pickerView.frame.origin.y, self.pickerView.frame.size.width*0.95, self.pickerView.frame.size.height*0.55)];
     [self.pickerView addSubview:self.fontPicker];
 }
 
