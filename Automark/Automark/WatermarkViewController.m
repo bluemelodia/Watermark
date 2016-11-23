@@ -7,7 +7,6 @@
 //
 
 #import "AlertLabel.h"
-#import "KWTextEditor.h"
 #import "WatermarkViewController.h"
 
 @interface WatermarkViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate> {
@@ -20,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.watermarkText addTarget:self action:@selector(changedWatermarkText) forControlEvents:UIControlEventEditingChanged];
+    [self.watermarkText addTarget:self action:@selector(changedWatermarkText) forControlEvents:UIControlEventEditingDidEnd];
     
     // Customize the alert label
     label.alpha = 0;
@@ -35,7 +37,6 @@
     self.watermark.alpha = 0.0;
     [self.waterImageView addSubview:label];
     [self.waterImageView addSubview:self.watermark];
-    [self registEditor4WithTextView:self.watermark];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,8 +81,14 @@
     }
 }
 
-- (IBAction)moveWatermark:(id)sender {
+- (void)changedWatermarkText {
+    [self.watermark setText:self.watermarkText.text];
     
+    CGFloat fixedWidth = self.watermark.frame.size.width;
+    CGSize newSize = [self.watermark sizeThatFits:CGSizeMake(self.watermark.frame.size.width, self.watermark.frame.size.height)];
+    CGRect newFrame = self.watermark.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    self.watermark.frame = newFrame;
 }
 
 // Source: http://stackoverflow.com/questions/50467/how-do-i-size-a-uitextview-to-its-content
@@ -94,53 +101,10 @@
     textView.frame = newFrame;
 }
 
-- (void)registEditor4WithTextView:(UITextView*)textView
-{
-    KWTextEditor* textEditor = [[KWTextEditor alloc] initWithTextView:textView];
-    
-    // callback handlers
-    [textEditor setTextDidChangeHandler:^{
-        NSLog(@"TextDidChangeHandler: text=%@", textView.text);
-    }];
-    
-    [textEditor setFontDidChangeHandler:^{
-        NSLog(@"fontDidChangeHandler: fontName=%@ pointSize=%.1f", textView.font.fontName, textView.font.pointSize);
-    }];
-    
-    __weak KWTextEditor* _textEditor = textEditor;
-    [textEditor setEditorDidShowHandler:^{
-        NSString *mode = @"";
-        if (_textEditor.editorMode == KWTextEditorModeKeyboard) mode = @"keyboard";
-        if (_textEditor.editorMode == KWTextEditorModeFontPicker) mode = @"font picker";
-        NSLog(@"editorDidShowHandler: %@", mode);
-    }];
-    
-    [textEditor setEditorDidHideHandler:^{
-        NSLog(@"editorDidHideHandler");
-        [self textViewDidChange:self.watermark];
-    }];
-    
-    [textEditor setCloseButtonDidTapHandler:^{
-        NSLog(@"closeButtonDidTapHandler");
-        [self textViewDidChange:self.watermark];
-    }];
-    
-    // customize button labels
-    textEditor.keyboardButton.title = @"Text";
-    textEditor.fontButton.title = @"Font";
-    textEditor.closeButton.title = @"Done";
-    
-    textEditor.fontPicker.minFontSize = 8;
-    textEditor.fontPicker.maxFontSize = 24;
-    textEditor.fontPicker.stepFontSize = 0.5;
-    textEditor.fontPicker.colorVariants = KWFontPickerColorVariants666;
-    
-    //[textEditor setScrollView:self.scrollView];
-    [textEditor showInView:self.view];
-}
-
 #pragma mark - Allow user to move the watermark
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.watermarkText resignFirstResponder];
+    
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
@@ -151,6 +115,8 @@
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
+    [self.watermarkText resignFirstResponder];
+    
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
@@ -167,17 +133,8 @@
 #pragma mark - Save user's photo
 - (IBAction)saveImage:(id)sender {
     if (!CGSizeEqualToSize(self.waterImageView.image.size, CGSizeZero)) {
-        UIFont *font = [UIFont fontWithName:self.watermark.font.fontName size:self.watermark.font.pointSize];
-        NSLog(@"Font Size: %f", self.watermark.font.pointSize);
-        UIGraphicsBeginImageContext(self.waterImageView.image.size);
-        [self.waterImageView.image drawInRect:CGRectMake(0,0,self.waterImageView.image.size.width,self.waterImageView.image.size.height)];
-        NSLog(@"WATERMARK X: %f", self.watermark.center.x);
-        NSLog(@"WATERMARK Y: %f", self.watermark.center.y);
-        NSLog(@"DRAW X: %f", self.watermark.center.x);
-        NSLog(@"DRAW Y: %f", self.watermark.center.y);
-
         // create a new UIImage from the watermark
-        UIImage *img = [self pb_takeSnapshot];
+        UIImage *img = [self viewToScreenshot];
         
         [self.waterImageView setImage:img];
         
@@ -186,7 +143,8 @@
     }
 }
 
-- (UIImage *)pb_takeSnapshot {
+// Source: http://stackoverflow.com/questions/2214957/how-do-i-take-a-screen-shot-of-a-uiview
+- (UIImage *)viewToScreenshot {
     UIGraphicsBeginImageContextWithOptions(self.waterImageView.bounds.size, NO, [UIScreen mainScreen].scale);
     
     [self.waterImageView drawViewHierarchyInRect:self.waterImageView.bounds afterScreenUpdates:YES];
