@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *waterImageView;
 @property (weak, nonatomic) IBOutlet UITextView *watermark;
 @property (weak, nonatomic) IBOutlet UITextField *watermarkText;
+@property (weak, nonatomic) IBOutlet UITextField *hexColorField;
 
 @end

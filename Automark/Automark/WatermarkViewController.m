@@ -22,6 +22,8 @@
     
     [self.watermarkText addTarget:self action:@selector(changedWatermarkText) forControlEvents:UIControlEventEditingChanged];
     [self.watermarkText addTarget:self action:@selector(changedWatermarkText) forControlEvents:UIControlEventEditingDidEnd];
+    [self.hexColorField addTarget:self action:@selector(renderHexColor) forControlEvents:UIControlEventEditingChanged];
+    [self.hexColorField addTarget:self action:@selector(renderHexColor) forControlEvents:UIControlEventEditingDidEnd];
     
     // Customize the alert label
     label.alpha = 0;
@@ -81,6 +83,7 @@
     }
 }
 
+// Source: http://stackoverflow.com/questions/50467/how-do-i-size-a-uitextview-to-its-content
 - (void)changedWatermarkText {
     [self.watermark setText:self.watermarkText.text];
     
@@ -91,19 +94,37 @@
     self.watermark.frame = newFrame;
 }
 
-// Source: http://stackoverflow.com/questions/50467/how-do-i-size-a-uitextview-to-its-content
-- (void)textViewDidChange:(UITextView *)textView
-{
-    CGFloat fixedWidth = textView.frame.size.width;
-    CGSize newSize = [textView sizeThatFits:CGSizeMake(self.watermark.frame.size.width, self.watermark.frame.size.height)];
-    CGRect newFrame = textView.frame;
-    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-    textView.frame = newFrame;
+// Change the watermark font color according to user wishes
+- (void)renderHexColor {
+    NSCharacterSet *chars = [[NSCharacterSet
+                              characterSetWithCharactersInString:@"#0123456789ABCDEF"] invertedSet];
+    if (self.hexColorField.text == nil || self.hexColorField.text.length < 1) {
+        [self.hexColorField setText:@"#FFFFFF"];
+    } else {
+        BOOL isValid = (NSNotFound == [self.hexColorField.text rangeOfCharacterFromSet:chars].location);
+        if (!isValid) [self.hexColorField setText:@"#FFFFFF"];
+        
+        unsigned long times = [[self.hexColorField.text componentsSeparatedByString:@"#"] count]-1;
+        if (times > 1) [self.hexColorField setText:@"#FFFFFF"];
+    }
+    [self.watermark setTextColor:[self colorFromHex:self.hexColorField.text]];
+}
+
+- (UIColor *)colorFromHex:(NSString *)hex {
+    unsigned rgbValue = 0;
+    // Scans the values from the string object
+    NSScanner *scanner = [NSScanner scannerWithString:hex];
+    [scanner setScanLocation:1]; // Skip #
+    [scanner scanHexInt:&rgbValue];
+    
+    UIColor *color = [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+    return color;
 }
 
 #pragma mark - Allow user to move the watermark
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.watermarkText resignFirstResponder];
+    [self.hexColorField resignFirstResponder];
     
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
@@ -116,7 +137,8 @@
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
     [self.watermarkText resignFirstResponder];
-    
+    [self.hexColorField resignFirstResponder];
+
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
