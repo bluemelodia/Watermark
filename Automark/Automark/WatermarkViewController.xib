@@ -6,11 +6,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WatermarkViewController">
             <connections>
+                <outlet property="fontField" destination="BPF-34-3mp" id="Cdo-F0-eFW"/>
                 <outlet property="hexColorField" destination="6ad-An-hjL" id="a1h-yK-QUc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="waterImageView" destination="vvj-PQ-wDN" id="kTD-vU-QAr"/>
@@ -62,9 +64,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-o8-iEP">
                     <rect key="frame" x="0.0" y="461" width="375" height="206"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Your Watermark Text Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3go-5k-nMw">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Your Watermark Text Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3go-5k-nMw">
                             <rect key="frame" x="8" y="8" width="359" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -72,15 +73,34 @@
                                 <action selector="changedWatermarkText:" destination="-1" eventType="valueChanged" id="dpv-91-IWE"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hex Color Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ad-An-hjL">
-                            <rect key="frame" x="8" y="46" width="123" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Font Size" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BPF-34-3mp">
+                            <rect key="frame" x="145" y="46" width="97" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hex Color Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ad-An-hjL">
+                            <rect key="frame" x="8" y="46" width="129" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="6ad-An-hjL" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" symbolic="YES" id="0jj-08-r4u"/>
+                        <constraint firstItem="6ad-An-hjL" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="CFg-lI-suI"/>
+                        <constraint firstItem="BPF-34-3mp" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="FBO-SG-SWg"/>
+                        <constraint firstItem="BPF-34-3mp" firstAttribute="leading" secondItem="6ad-An-hjL" secondAttribute="trailing" constant="8" id="J8o-zf-pKR"/>
+                        <constraint firstItem="3go-5k-nMw" firstAttribute="top" secondItem="ev8-o8-iEP" secondAttribute="top" constant="8" id="Qbm-xb-5ii"/>
+                        <constraint firstAttribute="trailing" secondItem="3go-5k-nMw" secondAttribute="trailing" constant="8" id="YL8-7N-URf"/>
+                        <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="3go-5k-nMw" secondAttribute="leading" id="ZsI-fP-L6M"/>
+                        <constraint firstItem="BPF-34-3mp" firstAttribute="leading" secondItem="6ad-An-hjL" secondAttribute="trailing" constant="8" id="jMV-K9-DTH"/>
+                        <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leadingMargin" id="k1X-EC-O7f"/>
+                        <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="nux-8i-dk7"/>
+                        <constraint firstItem="BPF-34-3mp" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="spW-qo-IFS"/>
+                        <constraint firstItem="3go-5k-nMw" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="vTQ-KT-3y0"/>
+                    </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Sign Here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0op-fm-Bhk">
                     <rect key="frame" x="16" y="237" width="343" height="31"/>

@@ -24,6 +24,12 @@
     [self.watermarkText addTarget:self action:@selector(changedWatermarkText) forControlEvents:UIControlEventEditingDidEnd];
     [self.hexColorField addTarget:self action:@selector(renderHexColor) forControlEvents:UIControlEventEditingChanged];
     [self.hexColorField addTarget:self action:@selector(renderHexColor) forControlEvents:UIControlEventEditingDidEnd];
+    [self.fontField addTarget:self action:@selector(changeFontSize) forControlEvents:UIControlEventEditingChanged];
+    [self.fontField addTarget:self action:@selector(changeFontSize) forControlEvents:UIControlEventEditingDidEnd];
+    
+    // Detect, attach selectors for when the keyboard is shown and hidden
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
     // Customize the alert label
     label.alpha = 0;
@@ -94,6 +100,17 @@
     self.watermark.frame = newFrame;
 }
 
+- (void)changeFontSize {
+    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc] init];
+    BOOL isNumber = [numFormat numberFromString:self.fontField.text] != nil;
+    if (!isNumber) {
+        [self.fontField setText:@""];
+        return;
+    }
+    CGFloat fontSize = [[numFormat numberFromString:self.fontField.text] floatValue];
+    [self.watermark setFont:[UIFont fontWithName:self.watermark.font.fontName size:fontSize]];
+}
+
 // Change the watermark font color according to user wishes
 - (void)renderHexColor {
     NSCharacterSet *chars = [[NSCharacterSet
@@ -121,10 +138,36 @@
     return color;
 }
 
+#pragma mark - Keyboard handling methods
+// Move the view upwards or downwards based on the presence of a keyboard
+- (void)keyboardWillShow:(NSNotification*)notif {
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect newFrame = [self.view frame];
+        
+        // Clicking on two text fields will displace the view only once
+        if (newFrame.origin.y == 0) {
+            newFrame.origin.y -= 150;
+        }
+        [self.view setFrame:newFrame];
+        
+    }completion:^(BOOL finished) {}];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)notif {
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect newFrame = [self.view frame];
+        if (newFrame.origin.y == -150) {
+            newFrame.origin.y += 150;
+        }
+        [self.view setFrame:newFrame];
+    }completion:^(BOOL finished) {}];
+}
+
 #pragma mark - Allow user to move the watermark
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.watermarkText resignFirstResponder];
     [self.hexColorField resignFirstResponder];
+    [self.fontField resignFirstResponder];
     
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
@@ -138,6 +181,7 @@
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
     [self.watermarkText resignFirstResponder];
     [self.hexColorField resignFirstResponder];
+    [self.fontField resignFirstResponder];
 
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
