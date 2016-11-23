@@ -7,10 +7,12 @@
 //
 
 #import "AlertLabel.h"
+#import <UIKit/UIKit.h>
 #import "WatermarkViewController.h"
 
-@interface WatermarkViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate> {
+@interface WatermarkViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate> {
     AlertLabel *label;
+    NSMutableArray *fonts;
 }
 
 @end
@@ -45,6 +47,16 @@
     self.watermark.alpha = 0.0;
     [self.waterImageView addSubview:label];
     [self.waterImageView addSubview:self.watermark];
+    
+    // Add the available fonts
+    fonts = [[NSMutableArray alloc] init];
+    for (NSString *familyName in [UIFont familyNames]){
+        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
+            [fonts addObject:fontName];
+        }
+    }
+    self.fontPicker.dataSource = self;
+    self.fontPicker.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +69,34 @@
 
 - (IBAction)dismissCustomizeVC:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIPicker methods
+// Number of columns of data
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+// Number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return fonts.count;
+}
+
+// Data to return for the row and column/component that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return fonts[row];
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel) {
+        pickerLabel = [[UILabel alloc] init];
+        NSString *font = [NSString stringWithFormat:@"%@", [fonts objectAtIndex:row]];
+        pickerLabel.font = [UIFont fontWithName:font size:14];
+        pickerLabel.textAlignment=NSTextAlignmentCenter;
+    }
+    [pickerLabel setText:[fonts objectAtIndex:row]];
+    return pickerLabel;
 }
 
 #pragma mark - Image picker methods
@@ -161,6 +201,11 @@
         }
         [self.view setFrame:newFrame];
     }completion:^(BOOL finished) {}];
+}
+
+#pragma mark - Pick the watermark font
+- (IBAction)showFontPicker:(id)sender {
+    [self.pickerView addSubview:self.fontPicker];
 }
 
 #pragma mark - Allow user to move the watermark

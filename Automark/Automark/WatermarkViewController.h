@@ -14,5 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *watermarkText;
 @property (weak, nonatomic) IBOutlet UITextField *hexColorField;
 @property (weak, nonatomic) IBOutlet UITextField *fontField;
+@property (strong, nonatomic) IBOutlet UIPickerView *fontPicker;
+@property (weak, nonatomic) IBOutlet UIButton *fontStyle;
+@property (weak, nonatomic) IBOutlet UIView *pickerView;
 
 @end

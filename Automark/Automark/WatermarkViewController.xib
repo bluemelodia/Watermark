@@ -12,7 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WatermarkViewController">
             <connections>
                 <outlet property="fontField" destination="BPF-34-3mp" id="Cdo-F0-eFW"/>
+                <outlet property="fontPicker" destination="Vfj-nC-ZHH" id="Fog-40-yw7"/>
+                <outlet property="fontStyle" destination="iNs-oe-qaU" id="e9L-QS-3iP"/>
                 <outlet property="hexColorField" destination="6ad-An-hjL" id="a1h-yK-QUc"/>
+                <outlet property="pickerView" destination="eyV-Kl-E1s" id="n4f-qQ-VIm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="waterImageView" destination="vvj-PQ-wDN" id="kTD-vU-QAr"/>
                 <outlet property="watermark" destination="0op-fm-Bhk" id="UCR-Cn-aib"/>
@@ -55,13 +58,13 @@
                     </items>
                 </toolbar>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-PQ-wDN">
-                    <rect key="frame" x="0.0" y="44" width="375" height="417"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="350"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="417" id="l9X-ZP-V8q"/>
+                        <constraint firstAttribute="height" constant="350" id="l9X-ZP-V8q"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-o8-iEP">
-                    <rect key="frame" x="0.0" y="461" width="375" height="206"/>
+                    <rect key="frame" x="0.0" y="394" width="375" height="273"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Your Watermark Text Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3go-5k-nMw">
                             <rect key="frame" x="8" y="8" width="359" height="30"/>
@@ -90,23 +93,35 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Chb-ij-DOC">
-                            <rect key="frame" x="204" y="46" width="163" height="30"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNs-oe-qaU">
+                            <rect key="frame" x="8" y="84" width="359" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="Font Style">
+                                <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="showFontPicker:" destination="-1" eventType="touchUpInside" id="94u-m0-6ku"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyV-Kl-E1s">
+                            <rect key="frame" x="8" y="114" width="359" height="151"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="Chb-ij-DOC" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="2Ns-ri-f4A"/>
+                        <constraint firstAttribute="bottom" secondItem="eyV-Kl-E1s" secondAttribute="bottom" constant="8" id="0tG-Ga-6hc"/>
+                        <constraint firstAttribute="trailing" secondItem="iNs-oe-qaU" secondAttribute="trailing" constant="8" id="7kh-IK-SYu"/>
                         <constraint firstItem="6ad-An-hjL" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="CFg-lI-suI"/>
+                        <constraint firstItem="iNs-oe-qaU" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="DnD-k4-ti3"/>
+                        <constraint firstItem="eyV-Kl-E1s" firstAttribute="top" secondItem="iNs-oe-qaU" secondAttribute="bottom" id="Eyg-Av-Yob"/>
                         <constraint firstItem="BPF-34-3mp" firstAttribute="leading" secondItem="6ad-An-hjL" secondAttribute="trailing" constant="8" id="J8o-zf-pKR"/>
-                        <constraint firstAttribute="trailing" secondItem="Chb-ij-DOC" secondAttribute="trailing" constant="8" id="MpG-L7-KXg"/>
+                        <constraint firstItem="iNs-oe-qaU" firstAttribute="top" secondItem="BPF-34-3mp" secondAttribute="bottom" constant="8" id="Jfj-QD-rcU"/>
                         <constraint firstItem="3go-5k-nMw" firstAttribute="top" secondItem="ev8-o8-iEP" secondAttribute="top" constant="8" id="Qbm-xb-5ii"/>
+                        <constraint firstItem="eyV-Kl-E1s" firstAttribute="width" secondItem="iNs-oe-qaU" secondAttribute="width" id="V7V-Km-1Gv"/>
                         <constraint firstAttribute="trailing" secondItem="3go-5k-nMw" secondAttribute="trailing" constant="8" id="YL8-7N-URf"/>
                         <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="3go-5k-nMw" secondAttribute="leading" id="ZsI-fP-L6M"/>
-                        <constraint firstItem="Chb-ij-DOC" firstAttribute="leading" secondItem="BPF-34-3mp" secondAttribute="trailing" constant="8" id="kQA-cA-ej5"/>
+                        <constraint firstAttribute="trailing" secondItem="eyV-Kl-E1s" secondAttribute="trailing" constant="8" id="n9p-uk-kMI"/>
                         <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="nux-8i-dk7"/>
                         <constraint firstItem="BPF-34-3mp" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="spW-qo-IFS"/>
                         <constraint firstItem="3go-5k-nMw" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="vTQ-KT-3y0"/>
@@ -135,6 +150,15 @@
             </constraints>
             <point key="canvasLocation" x="33.5" y="72.5"/>
         </view>
+        <pickerView clipsSubviews="YES" contentMode="scaleToFill" id="Vfj-nC-ZHH">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="Y4C-a1-iV5"/>
+                <outlet property="delegate" destination="-1" id="vNY-Go-aip"/>
+            </connections>
+            <point key="canvasLocation" x="-391" y="298"/>
+        </pickerView>
     </objects>
     <resources>
         <image name="Autograph" width="22" height="22"/>
