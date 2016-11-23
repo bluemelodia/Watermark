@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="fontField" destination="BPF-34-3mp" id="Cdo-F0-eFW"/>
                 <outlet property="fontPicker" destination="Vfj-nC-ZHH" id="Fog-40-yw7"/>
-                <outlet property="fontStyle" destination="iNs-oe-qaU" id="e9L-QS-3iP"/>
                 <outlet property="hexColorField" destination="6ad-An-hjL" id="a1h-yK-QUc"/>
                 <outlet property="pickerView" destination="eyV-Kl-E1s" id="n4f-qQ-VIm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -93,38 +92,27 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNs-oe-qaU">
-                            <rect key="frame" x="8" y="84" width="359" height="30"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <state key="normal" title="Font Style">
-                                <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="showFontPicker:" destination="-1" eventType="touchUpInside" id="94u-m0-6ku"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyV-Kl-E1s">
-                            <rect key="frame" x="8" y="114" width="359" height="151"/>
+                            <rect key="frame" x="8" y="84" width="359" height="181"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="eyV-Kl-E1s" secondAttribute="bottom" constant="8" id="0tG-Ga-6hc"/>
-                        <constraint firstAttribute="trailing" secondItem="iNs-oe-qaU" secondAttribute="trailing" constant="8" id="7kh-IK-SYu"/>
                         <constraint firstItem="6ad-An-hjL" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="CFg-lI-suI"/>
-                        <constraint firstItem="iNs-oe-qaU" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="DnD-k4-ti3"/>
-                        <constraint firstItem="eyV-Kl-E1s" firstAttribute="top" secondItem="iNs-oe-qaU" secondAttribute="bottom" id="Eyg-Av-Yob"/>
+                        <constraint firstAttribute="trailing" secondItem="eyV-Kl-E1s" secondAttribute="trailing" constant="8" id="FAk-6d-9Ib"/>
                         <constraint firstItem="BPF-34-3mp" firstAttribute="leading" secondItem="6ad-An-hjL" secondAttribute="trailing" constant="8" id="J8o-zf-pKR"/>
-                        <constraint firstItem="iNs-oe-qaU" firstAttribute="top" secondItem="BPF-34-3mp" secondAttribute="bottom" constant="8" id="Jfj-QD-rcU"/>
+                        <constraint firstAttribute="bottom" secondItem="eyV-Kl-E1s" secondAttribute="bottom" constant="8" id="OQE-b7-0UB"/>
                         <constraint firstItem="3go-5k-nMw" firstAttribute="top" secondItem="ev8-o8-iEP" secondAttribute="top" constant="8" id="Qbm-xb-5ii"/>
-                        <constraint firstItem="eyV-Kl-E1s" firstAttribute="width" secondItem="iNs-oe-qaU" secondAttribute="width" id="V7V-Km-1Gv"/>
+                        <constraint firstItem="eyV-Kl-E1s" firstAttribute="top" secondItem="BPF-34-3mp" secondAttribute="bottom" constant="8" id="QsW-1F-Lq7"/>
                         <constraint firstAttribute="trailing" secondItem="3go-5k-nMw" secondAttribute="trailing" constant="8" id="YL8-7N-URf"/>
                         <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="3go-5k-nMw" secondAttribute="leading" id="ZsI-fP-L6M"/>
                         <constraint firstAttribute="trailing" secondItem="eyV-Kl-E1s" secondAttribute="trailing" constant="8" id="n9p-uk-kMI"/>
                         <constraint firstItem="6ad-An-hjL" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="nux-8i-dk7"/>
                         <constraint firstItem="BPF-34-3mp" firstAttribute="top" secondItem="3go-5k-nMw" secondAttribute="bottom" constant="8" id="spW-qo-IFS"/>
                         <constraint firstItem="3go-5k-nMw" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="vTQ-KT-3y0"/>
+                        <constraint firstItem="eyV-Kl-E1s" firstAttribute="leading" secondItem="ev8-o8-iEP" secondAttribute="leading" constant="8" id="w6N-Pm-FMQ"/>
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Sign Here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0op-fm-Bhk">

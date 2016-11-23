@@ -57,6 +57,8 @@
     }
     self.fontPicker.dataSource = self;
     self.fontPicker.delegate = self;
+    [self.fontPicker setFrame:CGRectMake(self.pickerView.frame.origin.x, self.pickerView.frame.origin.y, self.pickerView.frame.size.width*0.95, self.pickerView.frame.size.height*0.8)];
+    [self.pickerView addSubview:self.fontPicker];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -201,11 +203,6 @@
         }
         [self.view setFrame:newFrame];
     }completion:^(BOOL finished) {}];
-}
-
-#pragma mark - Pick the watermark font
-- (IBAction)showFontPicker:(id)sender {
-    [self.pickerView addSubview:self.fontPicker];
 }
 
 #pragma mark - Allow user to move the watermark
