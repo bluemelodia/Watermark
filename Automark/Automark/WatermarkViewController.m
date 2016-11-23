@@ -34,6 +34,7 @@
     self.watermark.delegate = self;
     self.watermark.alpha = 0.0;
     [self.waterImageView addSubview:label];
+    [self.waterImageView addSubview:self.watermark];
     [self registEditor4WithTextView:self.watermark];
 }
 
@@ -68,20 +69,26 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
+
 #pragma mark - Watermark
 - (IBAction)addWatermark:(id)sender {
-    if (self.watermark.alpha == 0.0) {
+    if (self.watermark.alpha == 0.0 && !CGSizeEqualToSize(self.waterImageView.image.size, CGSizeZero)) {
         self.watermark.alpha = 1.0;
+        
     } else {
         self.watermark.alpha = 0.0;
     }
+}
+
+- (IBAction)moveWatermark:(id)sender {
+    
 }
 
 // Source: http://stackoverflow.com/questions/50467/how-do-i-size-a-uitextview-to-its-content
 - (void)textViewDidChange:(UITextView *)textView
 {
     CGFloat fixedWidth = textView.frame.size.width;
-    CGSize newSize = [textView sizeThatFits:CGSizeMake(self.watermark.frame.size.width*2, self.watermark.frame.size.height)];
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(self.watermark.frame.size.width, self.watermark.frame.size.height)];
     CGRect newFrame = textView.frame;
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
     textView.frame = newFrame;
@@ -160,9 +167,35 @@
 #pragma mark - Save user's photo
 - (IBAction)saveImage:(id)sender {
     if (!CGSizeEqualToSize(self.waterImageView.image.size, CGSizeZero)) {
-        UIImageWriteToSavedPhotosAlbum(self.waterImageView.image, nil, nil, nil);
+        UIFont *font = [UIFont fontWithName:self.watermark.font.fontName size:self.watermark.font.pointSize];
+        NSLog(@"Font Size: %f", self.watermark.font.pointSize);
+        UIGraphicsBeginImageContext(self.waterImageView.image.size);
+        [self.waterImageView.image drawInRect:CGRectMake(0,0,self.waterImageView.image.size.width,self.waterImageView.image.size.height)];
+        NSLog(@"WATERMARK X: %f", self.watermark.center.x);
+        NSLog(@"WATERMARK Y: %f", self.watermark.center.y);
+        NSLog(@"DRAW X: %f", self.watermark.center.x);
+        NSLog(@"DRAW Y: %f", self.watermark.center.y);
+
+        // create a new UIImage from the watermark
+        UIImage *img = [self pb_takeSnapshot];
+        
+        [self.waterImageView setImage:img];
+        
+        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
         [self displayMessage:@" Saved to Photo Library "];
     }
+}
+
+- (UIImage *)pb_takeSnapshot {
+    UIGraphicsBeginImageContextWithOptions(self.waterImageView.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    [self.waterImageView drawViewHierarchyInRect:self.waterImageView.bounds afterScreenUpdates:YES];
+    
+    // old style [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 - (void)displayMessage:(NSString *)message {

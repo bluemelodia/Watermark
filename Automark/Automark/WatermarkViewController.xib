@@ -42,7 +42,13 @@
                                 <action selector="addWatermark:" destination="-1" id="I5E-62-M8l"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="                                                    " id="nBe-QX-cn6"/>
+                        <barButtonItem image="Hand" id="iMd-Gx-wZF">
+                            <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="moveWatermark:" destination="-1" id="Wvo-jd-un6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="                                             " id="nBe-QX-cn6"/>
                         <barButtonItem systemItem="stop" id="CxE-N7-HGj">
                             <color key="tintColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -88,6 +94,7 @@
     <resources>
         <image name="Autograph" width="22" height="22"/>
         <image name="Folder" width="22" height="22"/>
+        <image name="Hand" width="22" height="22"/>
         <image name="Save" width="22" height="22"/>
     </resources>
 </document>
