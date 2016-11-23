@@ -101,6 +101,12 @@
     return pickerLabel;
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    NSString *font = [NSString stringWithFormat:@"%@", [fonts objectAtIndex:row]];
+    [self.watermark setFont:[UIFont fontWithName:font size:self.watermark.font.pointSize]];
+}
+
+
 #pragma mark - Image picker methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *thisImage = info[UIImagePickerControllerOriginalImage];
